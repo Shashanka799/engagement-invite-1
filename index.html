@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Engagement Invitation</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+
+<body>
+
+
+<audio id="bgMusic" loop preload="auto">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="form-box">
+<h2>Guest Details</h2>
+
+<input id="name" placeholder="Guest Name"><br>
+<input id="phone" placeholder="WhatsApp Number"><br>
+
+<button onclick="generate()">Generate Invitation</button>
+</div>
+
+<div id="card" class="card">
+<h1>💍 Engagement Invitation</h1>
+
+<p>You are warmly invited</p>
+<h2 id="guestName"></h2>
+
+<p>to celebrate the engagement of</p>
+<h3>Vishwanath ❤️ Rashmi</h3>
+
+<p>📅 5<sup>th</sup> March 2026</p>
+<p>📍 Country Club Shivamogga</p>
+
+<br>
+
+<a id="mapLink" target="_blank">
+<button>View Location</button>
+</a>
+
+<br><br>
+
+<a id="waLink" target="_blank">
+<button>Send WhatsApp</button>
+</a>
+</div>
+
+
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+
+const name = params.get("name");
+const phone = params.get("phone");
+
+if(name){
+document.getElementById("guestName").innerText=name;
+document.getElementById("card").style.display="block";
+
+let msg=`Hi ${name}, you are invited to our engagement ceremony 💍
+
+📍 Venue: Country Club Shivamogga
+https://maps.google.com/?q=Country+Club+Shivamogga`;
+
+document.getElementById("waLink").href=
+`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+document.getElementById("mapLink").href=
+"https://maps.google.com/?q=Country+Club+Shivamogga";
+}
+
+/* GENERATE PETALS */
+for(let i=0;i<25;i++){
+let petal=document.createElement("div");
+petal.className="petal";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(5+Math.random()*5)+"s";
+petal.style.opacity=Math.random();
+document.body.appendChild(petal);
+}
+
+/* GENERATE INVITATION */
+function generate(){
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+
+if(name===""||phone===""){
+alert("Enter all details");
+return;
+}
+
+document.getElementById("guestName").innerText=name;
+document.getElementById("card").style.display="block";
+
+/* WhatsApp message */
+let locationLink="https://maps.google.com/?q=Country+Club+Shivamogga";
+
+let msg=`Hi ${name}, you are invited to our engagement ceremony 💍
+
+📍 Venue: Country Club Shivamogga
+Location Link:
+${locationLink}`;
+
+document.getElementById("waLink").href =
+`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+let music = document.getElementById("bgMusic");
+music.play().catch(()=>{});
+
+let shareLink =
+window.location.origin +
+window.location.pathname +
+`?name=${encodeURIComponent(name)}&phone=${phone}`;
+
+alert("Send this link to guest:\n\n" + shareLink);
+
+
+
+/* Google Maps link */
+document.getElementById("mapLink").href=
+"https://maps.google.com/?q=Country+Club+Shivamogga";
+}
+</script>
+
+</body>
+</html>
