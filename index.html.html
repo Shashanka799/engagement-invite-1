@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
 <meta charset="UTF-8">
 <title>Engagement Invitation</title>
 
@@ -93,7 +94,7 @@ p{color:#555}
 <body>
 
     <audio id="bgMusic" loop>
-<source src="sahilmadan-wedding-invitation-421393 (1).mp3" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="form-box">
@@ -126,7 +127,7 @@ p{color:#555}
 <br><br>
 
 <a id="waLink" target="_blank">
-<button>Send WhatsApp</button>
+
 </a>
 </div>
 
@@ -191,7 +192,7 @@ ${locationLink}`;
 document.getElementById("waLink").href =
 `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
-document.getElementById("bgMusic").play();
+document.getElementById("bgMusic").play().catch(()=>{});
 
 
 
